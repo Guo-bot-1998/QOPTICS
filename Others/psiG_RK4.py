@@ -21,27 +21,6 @@ def compute_BEC_RK4(_psiG, _psiE, nj):
     # Potential and initial condition
     _psiGmu = psiGmu
     # _psiEmu = psiEmu
-    # _psiE = np.zeros(TFsol.shape)
-    # _psiG = np.zeros(TFsol.shape)
-    # _psiG = TFsol
-    
-    for j in range(nj):
-        _psiG, _psiE = RK4(_psiG, _psiE, _psiGmu, _psiEmu, dw)
-         
-        if (j % stepJ) == 0:
-        #  update energy constraint 
-            Nfactor = Normalize(_psiG,_psiE,dx,dy,dz)
-            _psiGmu = _psiGmu/(Nfactor)
-            _psiEmu = _psiEmu/(Nfactor)
-    
-    return _psiG, _psiE
-
-# %%
-@njit(fastmath=True, nogil=True)
-def G(_psiG, _psiE, _psiGmu):
-    """Function of ground state"""
-    tmp = np.zeros(_psiG.shape)
-    tmp =  ( 0.5 * del2(_psiG,dx,dy,dz) 
          - (Epot + Ggg*np.abs(_psiG)**2 + Gge*np.abs(_psiE)**2)*_psiG
          + _psiGmu*_psiG )
     # set boundary points to zero

@@ -82,19 +82,20 @@ def __plotarrow(axs,zindice,X,Y,dx,dy,dz,m,length,data,**quiverargs):
     Y = Y[kernel]
 
     for k,axs_row in enumerate(axs):
-        if (k==1 or k==2):
+        if (k==1):
             Jx,Jy,Jz = _cur.current(data[...,k],dx,dy,dz,m)
-        else:
+        elif (k==0):
             Jx,Jy,Jz = _oam.oam(data[...,k],dx,dy,dz,length)        
        
         # reduce the density of arrow on axes
         Jx = Jx[kernel]
         Jy = Jy[kernel]
 
-        for i, ax in enumerate(axs_row):
-            ax.quiver(X[..., zindice[i]], Y[..., zindice[i]], 
-                    _np.real(Jx[..., zindice[i]]), _np.real(Jy[..., zindice[i]]),  
-                    **quiverargs)
+        if (k != 2 ):
+            for i, ax in enumerate(axs_row):
+                ax.quiver(X[..., zindice[i]], Y[..., zindice[i]], 
+                        _np.real(Jx[..., zindice[i]]), _np.real(Jy[..., zindice[i]]),  
+                        **quiverargs)
     labels = [None]*3
     labels[0] =  "O.A.M of L.G"
     labels[1:] = ["P.D.C of psiE", "P.D.C of psiG"]

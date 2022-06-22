@@ -1,7 +1,7 @@
 # quick plotting
 #%%
 import numpy as np
-import utils.dirutils as dd,os
+import utils.dirutils as dd, os
 import sys
 from utils.dummyconst import *
 

@@ -1,7 +1,8 @@
 #%%
 # BEGINNING(GPU calculation on cluster)
 # Data are stored as 4-D array. The first dimension stores data of different parameter
-# This one is angular number of L.G. beam
+# parameter L: angular momentum of the beam
+
 import cupy as cp
 import numpy as np
 import h5py

@@ -1,7 +1,7 @@
 #%%
-#BEGINNING(GPU calculation on cluster)
-#Data are stored as 4-D array. The first dimension stores data of different parameter
-#View as the As effect or something
+# BEGINNING(GPU calculation on cluster)
+# Data are stored as 4-D array. The first dimension stores data of different parameter
+# parameter g: interaction constant
 import cupy as cp
 import numpy as np
 import h5py

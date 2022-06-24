@@ -1,15 +1,14 @@
-# quick plotting
 #%%
 import numpy as np
 import utils.dirutils as dd, os
 import sys
 from utils.dummyconst import *
 
-# def Hamiltonian(_psi, _G, _dx, _dy, _dz):
-#      Energy = (np.sum( (np.conjugate(_psi) *  
-#          (-0.5 *del2.del2(_psi,_dx,_dy,_dz)+(Epot + _G*np.abs(_psi)**2)*_psi)*_dx*_dy*_dz)))
+def Hamiltonian(_psi, _G, _dx, _dy, _dz):
+     Energy = (np.sum( (np.conjugate(_psi) *  
+         (-0.5 *del2.del2(_psi,_dx,_dy,_dz)+(Epot + _G*np.abs(_psi)**2)*_psi)*_dx*_dy*_dz)))
 
-#      return Energy
+     return Energy
 
 
 #%%
@@ -25,44 +24,44 @@ if 'LGdata' in data: # The light is stored as variable named 'LGdata'
 
 cut = 60
 
-# #%%
-# print("abs|n_TF_pbb|^2")
-# print(np.sum(np.abs(n_TF_pbb)**2*dx*dy*dz))
-# print("abs|psiG|^2")
-# print(np.sum(np.abs(psiG)**2*dx*dy*dz))
-# print("abs|psiE|^2")
-# print(np.sum(np.abs(psiE)**2*dx*dy*dz))
-# #%%
-# import plotly.graph_objects as go
-# import matplotlib.pyplot as plt
-# cut =  60
-# plt.figure()
-# plt.plot(x, np.abs(n_TF_pbb[cut,:,cut])**2*dx*dy*dz)
-# plt.plot(x, np.abs(psiG[cut,:,cut])**2*dx*dy*dz)
-# plt.xlabel("x")
-# plt.title("psiG")
-# plt.legend(["Thomas-Fermi", "psiG"])
+#%%
+print("abs|n_TF_pbb|^2")
+print(np.sum(np.abs(n_TF_pbb)**2*dx*dy*dz))
+print("abs|psiG|^2")
+print(np.sum(np.abs(psiG)**2*dx*dy*dz))
+print("abs|psiE|^2")
+print(np.sum(np.abs(psiE)**2*dx*dy*dz))
+#%%
+import plotly.graph_objects as go
+import matplotlib.pyplot as plt
+cut =  60
+plt.figure()
+plt.plot(x, np.abs(n_TF_pbb[cut,:,cut])**2*dx*dy*dz)
+plt.plot(x, np.abs(psiG[cut,:,cut])**2*dx*dy*dz)
+plt.xlabel("x")
+plt.title("psiG")
+plt.legend(["Thomas-Fermi", "psiG"])
 
-# plt.figure()
-# plt.plot(y, np.abs(n_TF_pbb[:,cut,cut]**2)*dx*dy*dz)
-# plt.plot(y, np.abs(psiG[:,cut,cut]**2)*dx*dy*dz)
-# plt.xlabel("y")
+plt.figure()
+plt.plot(y, np.abs(n_TF_pbb[:,cut,cut]**2)*dx*dy*dz)
+plt.plot(y, np.abs(psiG[:,cut,cut]**2)*dx*dy*dz)
+plt.xlabel("y")
 
-# plt.figure()
-# plt.plot(z, np.abs(n_TF_pbb[cut,cut,:]**2)*dx*dy*dz)
-# plt.plot(z, np.abs(psiG[cut,cut,:]**2)*dx*dy*dz)
-# plt.xlabel("z")
+plt.figure()
+plt.plot(z, np.abs(n_TF_pbb[cut,cut,:]**2)*dx*dy*dz)
+plt.plot(z, np.abs(psiG[cut,cut,:]**2)*dx*dy*dz)
+plt.xlabel("z")
 
 
-# plt.figure()
-# plt.plot(y, np.abs(n_TF_pbb[:,cut,cut]**2)*dx*dy*dz)
-# plt.plot(y, np.abs(psiE[:,cut,cut]**2)*dx*dy*dz)
-# plt.xlabel("y")
+plt.figure()
+plt.plot(y, np.abs(n_TF_pbb[:,cut,cut]**2)*dx*dy*dz)
+plt.plot(y, np.abs(psiE[:,cut,cut]**2)*dx*dy*dz)
+plt.xlabel("y")
 
-# plt.figure()
-# plt.plot(z, np.abs(n_TF_pbb[cut,cut,:]**2)*dx*dy*dz)
-# plt.plot(z, np.abs(psiE[cut,cut,:]**2)*dx*dy*dz)
-# plt.xlabel("z")
+plt.figure()
+plt.plot(z, np.abs(n_TF_pbb[cut,cut,:]**2)*dx*dy*dz)
+plt.plot(z, np.abs(psiE[cut,cut,:]**2)*dx*dy*dz)
+plt.xlabel("z")
 
 plt.figure()
 plt.plot(x, np.abs(LG[cut,:,cut]))
@@ -190,34 +189,34 @@ fig.update_layout(title=' phase', autosize=False,
 fig.show()
 
 
-#%%
-# print('\nisosurface\n')
-# import plotly.graph_objects as go
-# Data = np.abs(psiE**2*dx*dy*dz).flatten()
-# # [X,Y,Z] = np.meshgrid(x,y,z)
-# # Data = (X**2+Y**2+Z**2).flatten()
-# diff = np.max(Data) - np.min(Data)
-# fig= go.Figure(data=go.Isosurface(
-#     x=X.flatten(),
-#     y=Y.flatten(),
-#     z=Z.flatten(),
-#     value = Data,
-#     # isomin=np.abs(Data[61,61,61]),
-#     # isomax=np.abs(Data[50,50,61]),
-#     isomin=np.min(Data) + diff/5,
-#     isomax=np.max(Data) - diff/5,
-#     # isomin=1e-5,
-#     # isomax=3e-5,
-# ))
-# fig.show()
+%%
+print('\nisosurface\n')
+import plotly.graph_objects as go
+Data = np.abs(psiE**2*dx*dy*dz).flatten()
+# [X,Y,Z] = np.meshgrid(x,y,z)
+# Data = (X**2+Y**2+Z**2).flatten()
+diff = np.max(Data) - np.min(Data)
+fig= go.Figure(data=go.Isosurface(
+    x=X.flatten(),
+    y=Y.flatten(),
+    z=Z.flatten(),
+    value = Data,
+    # isomin=np.abs(Data[61,61,61]),
+    # isomax=np.abs(Data[50,50,61]),
+    isomin=np.min(Data) + diff/5,
+    isomax=np.max(Data) - diff/5,
+    # isomin=1e-5,
+    # isomax=3e-5,
+))
+fig.show()
 
-# import plotly.graph_objects as go
+import plotly.graph_objects as go
 
-# fig= go.Figure(data=go.Isosurface(
-#     x=[0,0,0,0,1,1,1,1],
-#     y=[1,0,1,0,1,0,1,0],
-#     z=[1,1,0,0,1,1,0,0],
-#     value=[1,2,3,4,5,6,7,8],
-#     isomin=2,
-#     isomax=6,
-# ))
+fig= go.Figure(data=go.Isosurface(
+    x=[0,0,0,0,1,1,1,1],
+    y=[1,0,1,0,1,0,1,0],
+    z=[1,1,0,0,1,1,0,0],
+    value=[1,2,3,4,5,6,7,8],
+    isomin=2,
+    isomax=6,
+))

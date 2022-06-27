@@ -200,8 +200,8 @@ def computation(parameter,nj,stepJ,fileformat):
             SumPsiE = cp.sum( cp.abs(psiE)**2*dx*dy*dz, axis=(1,2,3))
             Nfactor = SumPsiG +  SumPsiE  
             # Update energy
-            # psiGmu = psiGmu/(Nfactor)
-            # psiEmu = psiEmu/(Nfactor)  
+            psiGmu = psiGmu/(Nfactor)
+            psiEmu = psiEmu/(Nfactor)  
             J = J + 1
             psiGmuArray[:,J] = psiGmu
             psiEmuArray[:,J] = psiEmu
@@ -267,7 +267,7 @@ def computation(parameter,nj,stepJ,fileformat):
 #%%
 if __name__ == "__main__":
     L1 = np.arange(2,7)
-    fileformat = "L{}_5um_dt1e-6.h5"
-    n = 300000
-    computation(L1,n,30000,fileformat)
+    fileformat = "L{}_test.h5"
+    n = 1000
+    computation(L1,n,500,fileformat)
 # %%
